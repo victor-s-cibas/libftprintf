@@ -6,7 +6,7 @@
 #    By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/15 13:07:58 by vicdos-s          #+#    #+#              #
-#    Updated: 2026/06/16 18:05:53 by vicdos-s         ###   ########.fr        #
+#    Updated: 2026/06/22 11:12:10 by vicdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ CFLAGS		= -Wall -Wextra -Werror
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-SRCS_DIR	= ./srcs
+SRCS_DIR	= ./mandatory
 SRCS		= $(SRCS_DIR)/printf.c \
-				$(SRCS_DIR)/handlers.c
+			$(SRCS_DIR)/handlers_str.c \
+			$(SRCS_DIR)/handlers_nbr.c
 
 OBJS		= $(SRCS:.c=.o)
 

@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   handlers_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 13:03:18 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/16 18:25:13 by vicdos-s         ###   ########.fr       */
+/*   Created: 2026/06/18 15:15:47 by vicdos-s          #+#    #+#             */
+/*   Updated: 2026/06/22 11:19:43 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-static int (* const handlers[256])(va_list *) = {
-	['c'] = print_char,
-};
-
-int ft_printf(const char* format, ...)
+int print_base (unsigned long n, char *base, unsigned long b_len)
 {
- va_list	args;
- int		count;
+	int	count;
 
- va_start(args, format);
- count = 0;
- while (*format)
- {
-	if (*format == '%' && *(format+1))
-	{
-		format++;
-		if ((handlers[(unsigned char)*format]))
-		count += handlers[(unsigned char)*format](&args);
-	}
-	else
-	count += write(1, format, 1);
-	format++;	
- }
- va_end(args);
- return(count);
+	count = 0;
+	if (n > b_len)
+		count += print_base(n / b_len, base, b_len);
+	count += write(1, &base[n % b_len], 1);
+	return (count);
 }
+
+int print_hex_lc (va_list *args)
+{
+	return(print_base(va_arg(*args, unsigned int), "0123456789abcdef", 16));
+}
+
+int print_hex_uc (va_list *args)
+{
+	return(print_base(va_arg(*args, unsigned int), "0123456789ABCDEF", 16));
+}
+

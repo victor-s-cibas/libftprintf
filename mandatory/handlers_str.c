@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   handlers_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/31 22:32:55 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/17 17:09:29 by vicdos-s         ###   ########.fr       */
+/*   Created: 2026/06/16 16:54:21 by vicdos-s          #+#    #+#             */
+/*   Updated: 2026/06/22 10:32:36 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libftprintf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int print_char (va_list *args)
 {
-	long	num;
+	char	c;
 
-	num = n;
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num = -num;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	ft_putchar_fd((num % 10) + '0', fd);
+	c = (char)va_arg(*args, int);
+	return(write(1, &c, 1));
 }
-// base = "0123456789abcdef";
 
-// number > 15
-// 	count += ft_hex_X(number / 16);
+int print_str (va_list *args)
+{
+	char	*s;
+	int		len;
+	
+	s =	va_arg(*args, char *);
+	if (!s)
+		s = "(null)";
+	len = (ft_strlen(s));
 
-// digit = base[number % 16];
-// count += write(1, &digit, 1);
+	return(write(1, s, len));
+}
 
-// return(count);
-// 0102
-// 102
+int print_pct (va_list *args)
+{
+	char	c;
+
+	c = (char)va_arg(*args, int);
+	return(write(1 , &"%" , 1));
+}
