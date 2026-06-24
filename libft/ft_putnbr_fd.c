@@ -6,7 +6,7 @@
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 22:32:55 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/17 17:09:29 by vicdos-s         ###   ########.fr       */
+/*   Updated: 2026/06/23 12:44:13 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(num / 10, fd);
 	ft_putchar_fd((num % 10) + '0', fd);
 }
-// base = "0123456789abcdef";
-
-// number > 15
-// 	count += ft_hex_X(number / 16);
-
-// digit = base[number % 16];
-// count += write(1, &digit, 1);
-
-// return(count);
-// 0102
-// 102

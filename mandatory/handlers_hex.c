@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rec.c                                              :+:      :+:    :+:   */
+/*   handlers_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/18 17:09:20 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/22 10:26:23 by vicdos-s         ###   ########.fr       */
+/*   Created: 2026/06/23 12:54:00 by vicdos-s          #+#    #+#             */
+/*   Updated: 2026/06/23 12:55:05 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include "ft_printf.h"
 
-int main(void)
+int	print_hex_lc(va_list *args)
 {
-	printf("Digitos de 42: %d\n", count_digits(42)); // Deve imprimir 2
-	printf("Digitos de 9: %d\n", count_digits(9));   // Deve imprimir 1
-	printf("Digitos de 8472: %d\n", count_digits(8472)); // Deve imprimir 4
+	return (print_base(va_arg(*args, unsigned int), "0123456789abcdef", 16));
+}
+
+int	print_hex_uc(va_list *args)
+{
+	return (print_base(va_arg(*args, unsigned int), "0123456789ABCDEF", 16));
 }

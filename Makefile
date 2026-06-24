@@ -6,15 +6,11 @@
 #    By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/15 13:07:58 by vicdos-s          #+#    #+#              #
-#    Updated: 2026/06/22 11:12:10 by vicdos-s         ###   ########.fr        #
+#    Updated: 2026/06/24 13:49:56 by vicdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-
-TEST_NAME	= test
-TEST_SRC    = main.c
-
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -23,9 +19,10 @@ LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS_DIR	= ./mandatory
-SRCS		= $(SRCS_DIR)/printf.c \
+SRCS		= $(SRCS_DIR)/ft_printf.c \
 			$(SRCS_DIR)/handlers_str.c \
-			$(SRCS_DIR)/handlers_nbr.c
+			$(SRCS_DIR)/handlers_nbr.c \
+			$(SRCS_DIR)/handlers_hex.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -44,7 +41,7 @@ $(LIBFT): FORCE
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $OBJS
+	rm -f $(OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
@@ -53,12 +50,6 @@ fclean: clean
 
 re: fclean all
 
-teste: $(NAME)
-	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_SRC) $(NAME) -o $(TEST_NAME)
-	@echo "\n🚀 Executável '$(TEST_NAME)' criado com sucesso!"
-	@echo "👉 Executando os testes agora:\n"
-	./$(TEST_NAME)
-	
 FORCE:
 
-.PHONY: all clean fclean re teste
+.PHONY: all clean fclean re
